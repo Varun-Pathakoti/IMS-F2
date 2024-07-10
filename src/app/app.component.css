@@ -1,0 +1,95 @@
+/* Styles for .topnav */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+}
+
+.topnav .logo {
+  width: 80px; /* Adjusted logo size */
+  height: auto;
+}
+
+.topnav h1 {
+  color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+}
+
+.topnav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  margin-left: 20px; /* Add spacing between links */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.topnav a:hover {
+  background-color: #d0bdf4;
+  color: #8458B3;
+}
+
+/* Styles for homepage bottom section */
+.homepage-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  padding: 2rem;
+}
+
+.left-section,
+.right-section {
+  width: 30%; /* Left and right sections cover 30% of the screen each */
+  position: relative;
+}
+
+.middle-section {
+  width: 40%; /* Middle section covers 40% of the screen */
+}
+
+.left-section .image-container img,
+.right-section .image-container img {
+  width: 100%;
+  height: auto; /* Ensures images maintain aspect ratio */
+  max-height: 500px; /* Increase the maximum height as needed */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 80%;
+}
+
+.text-overlay p {
+  margin: 0;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.quote-container {
+  margin-top: 20px; /* Space between quotes */
+}
+
+.quote-container blockquote {
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.quote-container blockquote:before,
+.quote-container blockquote:after {
+  content: '"';
+}

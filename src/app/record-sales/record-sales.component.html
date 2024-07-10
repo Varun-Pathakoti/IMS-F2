@@ -1,0 +1,35 @@
+<!-- record-sales.component.html -->
+<div class="record-sales-container">
+    <h2>Record Sales</h2>
+    <form [formGroup]="salesForm" (ngSubmit)="recordSales()">
+      <div class="form-group">
+        <label for="prodId">Product</label>
+        <select id="prodId" formControlName="prodId">
+          <option *ngFor="let product of products" [value]="product.productID">
+            {{ product.productName }} (Stock Level: {{ product.stockLevel }})
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" formControlName="quantity">
+      </div>
+      <button type="submit" [disabled]="salesForm.invalid">Record Sale</button>
+    </form>
+    <div *ngIf="outOfStockProducts.length > 0" class="out-of-stock-alert">
+      <h3>Out of Stock Products</h3>
+      <ul>
+        <li *ngFor="let productName of outOfStockProducts">
+          {{ productName }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="updatedProducts.length > 0" class="updated-products">
+      <h3>Updated Products</h3>
+      <ul>
+        <li *ngFor="let product of updatedProducts">
+          {{ product.productName }} (Stock Level: {{ product.stockLevel }})
+        </li>
+      </ul>
+    </div>
+  </div>

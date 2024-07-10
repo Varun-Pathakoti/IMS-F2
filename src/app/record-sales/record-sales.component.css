@@ -1,0 +1,66 @@
+/* record-sales.component.css */
+.record-sales-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .record-sales-container h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group select,
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .out-of-stock-alert, .updated-products {
+    margin-top: 20px;
+  }
+  
+  .out-of-stock-alert h3, .updated-products h3 {
+    text-align: center;
+  }
+  
+  .out-of-stock-alert ul, .updated-products ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .out-of-stock-alert li, .updated-products li {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }

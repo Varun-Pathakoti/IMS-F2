@@ -1,0 +1,25 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <h2>Create New Product</h2>
+    <div>
+      <label for="productName">Product Name:</label>
+      <input id="productName" formControlName="productName">
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <input id="description" formControlName="description">
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" type="number">
+    </div>
+    <div>
+      <label for="threshold">Threshold:</label>
+      <input id="threshold" formControlName="threshold" type="number">
+    </div>
+    <div>
+      <label for="stockLevel">Stock Level:</label>
+      <input id="stockLevel" formControlName="stockLevel" type="number">
+    </div>
+    <button type="submit" [disabled]="!productForm.valid">Create Product</button>
+  </form>
+  

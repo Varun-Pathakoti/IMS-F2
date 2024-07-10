@@ -1,0 +1,46 @@
+<div>
+  <label for="productId">Search by Product ID:</label>
+  <input type="number" id="productId" [(ngModel)]="productId">
+  <button (click)="searchProductById()">Search</button>
+</div>
+
+<hr>
+
+<!-- Display searched product details -->
+<div class="card-container">
+  <div class="card" *ngIf="productDetails">
+    <div class="card-header">
+      <h2>{{ productDetails.productName }}</h2>
+      <p class="price">{{ productDetails.price }}</p>
+    </div>
+    <div class="card-body">
+      <p>{{ productDetails.description }}</p>
+      <p><strong>Current Stock Level:</strong> {{ productDetails.stockLevel }}</p>
+      <!-- Text area to enter new stock level -->
+      <label for="newStock">New Stock Level:</label>
+      <input type="number" id="newStock" [(ngModel)]="newStock">
+      <!-- Submit button -->
+      <button [disabled]="newStock === productDetails.stockLevel" (click)="updateStock()">Submit</button>
+      <!-- Success message -->
+      <p *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</p>
+      <!-- Error message -->
+      <p *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Display list of products -->
+<div class="card-container">
+  <div class="card" *ngFor="let product of productList">
+    <div class="card-header">
+      <h2>{{ product.productName }}</h2>
+      <p class="price">{{ product.price }}</p>
+    </div>
+    <div class="card-body">
+      <p>{{ product.description }}</p>
+      <p><strong>Stock Level:</strong> {{ product.stockLevel }}</p>
+    </div>
+  </div>
+</div>
