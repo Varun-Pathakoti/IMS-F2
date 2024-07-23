@@ -3,12 +3,15 @@
     <img src="assets/pictures/logo.png" alt="Logo" class="logo">
   </a>
   <h1>INVENTORY MANAGEMENT SYSTEM</h1>
-  <a class="active" href="products">Products</a>  
-  <a class="active" href="create-product">Create</a>  
-  <a class="active" href="report">Report</a>  
-  <a class="active" href="record-sales">Sale</a> 
+
+  <ng-container *ngIf="!isAuthenticated">
+ 
+    <a class="active1" routerLink="/register">Register</a>
+  </ng-container>
+
+  <ng-container *ngIf="isAuthenticated">
+    <app-navbar></app-navbar>
+    <span>Welcome, {{ username }}!</span>
+  </ng-container>
 </div>
-
 <router-outlet></router-outlet>
-
-  

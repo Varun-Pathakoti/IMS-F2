@@ -4,8 +4,15 @@ import { ProductsComponent } from './products/products.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ReportComponent } from './report/report.component';
 import { RecordSalesComponent } from './record-sales/record-sales.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
+  {
+    path:'',
+    component:LoginComponent
+  },
   {
   path:'products',
   component:ProductsComponent
@@ -21,6 +28,15 @@ const routes: Routes = [
     {
       path:'record-sales',
       component:RecordSalesComponent
+    },
+   
+    {
+      path:'register',
+      component:RegisterComponent
+    },
+    {
+      path:'navbar',
+      component:NavbarComponent
     }
 ];
 

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+}
+.logo{
+  margin-top: -30px;
+  width:300px;
+  height:300px;
+  margin-right: 50px;
+}
+
+.login-container {
+  background-color: #e8e5e5;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin-left: 600px;
+  margin-top: 50px;
+ 
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 40px);
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #61dafb;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  color: #000202;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+.login-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #36454f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-left: 110px;
+  
+}
+
+.login-button:hover {
+  background-color: #0e1418;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}

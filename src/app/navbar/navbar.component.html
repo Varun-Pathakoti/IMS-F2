@@ -1,0 +1,28 @@
+<span id="menuIcon" style="font-size: 30px; cursor: pointer" (click)="openNav()">☰</span>
+<div id="sideMenu" class="sideMenu">
+  <img src="assets/pictures/user1.jpg" alt="Logo" class="logo">
+  <span class="username">{{ username }}</span>
+  <a href="javascript:void(0)" class="closeBtn" (click)="closeNav()">×</a>
+  <div class="mainMenu">
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/create-product" routerLinkActive="active">Create</a>
+    <a routerLink="/report" routerLinkActive="active">Report</a>
+    <a routerLink="/record-sales" routerLinkActive="active">Sale</a>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div id="contentArea">
+  <div class="contentText">
+    <!-- Content goes here -->
+  </div>
+</div>
+
+<div class="quotation">
+  The Simple, Secure, and Scalable Way to Run Your Business
+</div>
+<img src="assets/pictures/main.jpg" alt="Main" class="main">
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

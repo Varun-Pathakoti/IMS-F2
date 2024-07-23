@@ -1,95 +1,158 @@
-/* Styles for .topnav */
+
 .topnav {
-  background-color: #333;
-  overflow: hidden;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 14px 20px;
+  padding: 10px 20px;
+  background-color: #36454f;
+  border-bottom: 1px solid #444;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 90px;
+  width: 1630px;
 }
 
 .topnav .logo {
-  width: 80px; /* Adjusted logo size */
-  height: auto;
+  height: 50px;
+  transition: transform 0.3s;
+  margin-left: 40px;
+}
+
+.topnav .logo:hover {
+  transform: scale(1.1);
 }
 
 .topnav h1 {
-  color: #f2f2f2;
   margin: 0;
-  padding: 0;
-  font-size: 1.5em;
+  font-size: 35px;
+  color: #ffff;
+  margin-left: 60px;
 }
 
 .topnav a {
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
+  margin: 0 15px;
   text-decoration: none;
-  font-size: 17px;
-  margin-left: 20px; /* Add spacing between links */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #61dafb;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+  font-size: medium;
+  margin-right:90px;
 }
 
 .topnav a:hover {
-  background-color: #d0bdf4;
-  color: #8458B3;
+  color: #ffff;
+  transform: scale(1.1);
 }
 
-/* Styles for homepage bottom section */
-.homepage-bottom {
+.topnav a.active {
+  font-weight: bold;
+  color: #ffff;
+  left:220px;
+  
+}
+.topnav a.active1 {
+  font-weight: bold;
+  color: #ffff;
+
+  
+}
+
+.navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align items to the top */
-  padding: 2rem;
+  align-items: center;
 }
 
-.left-section,
-.right-section {
-  width: 30%; /* Left and right sections cover 30% of the screen each */
-  position: relative;
-}
-
-.middle-section {
-  width: 40%; /* Middle section covers 40% of the screen */
-}
-
-.left-section .image-container img,
-.right-section .image-container img {
-  width: 100%;
-  height: auto; /* Ensures images maintain aspect ratio */
-  max-height: 500px; /* Increase the maximum height as needed */
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.text-overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  border-radius: 5px;
-  max-width: 80%;
-}
-
-.text-overlay p {
+.navbar ul {
+  list-style: none;
   margin: 0;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #333;
+  padding: 0;
+  display: flex;
 }
 
-.quote-container {
-  margin-top: 20px; /* Space between quotes */
+.navbar ul li {
+  margin: 0 10px;
 }
 
-.quote-container blockquote {
-  font-style: italic;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
+.navbar ul li a {
+  text-decoration: none;
+  color: #61dafb;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
 }
 
-.quote-container blockquote:before,
-.quote-container blockquote:after {
-  content: '"';
+.navbar ul li a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #21a1f1;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
+
+.navbar ul li a:hover::before,
+.navbar ul li a.active::before {
+  visibility: visible;
+  width: 100%;
+}
+
+.navbar ul li a:hover {
+  color: #21a1f1;
+  transform: scale(1.1);
+}
+
+.navbar ul li a.active {
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #61dafb;
+}
+
+.username {
+  margin-right: 15px;
+  font-size: 16px;
+  color: #61dafb;
+  font-weight: 500;
+}
+
+.logout-button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #ff453a;
+  transform: scale(1.1);
+}
+
+/* Make sure content fits well in mobile views */
+@media (max-width: 768px) {
+  .topnav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+  }
+
+  .navbar ul li {
+    margin: 10px 0;
+  }
+
+  .username {
+    margin-bottom: 10px;
+  }
+}
+
