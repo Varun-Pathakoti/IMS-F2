@@ -17,11 +17,12 @@ export class NavbarComponent implements OnInit {
     this.isLoggedIn = currentUser !== null && !!currentUser.username;
     this.username = currentUser.username || '';
 
-    console.log(this.isLoggedIn, this.username, currentUser);
+    console.log(this.isLoggedIn, this.username, 'currentUser');
   }
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.username = '';
     this.router.navigate(['/']);

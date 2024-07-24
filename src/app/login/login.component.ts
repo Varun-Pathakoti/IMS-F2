@@ -1,6 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+
+//import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +22,7 @@ export class LoginComponent {
   @ViewChild('usernameRef', { static: false }) usernameRef!: ElementRef;
   @ViewChild('faceRef', { static: false }) faceRef!: ElementRef;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private auth: AuthService ) {}
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
@@ -51,9 +55,26 @@ export class LoginComponent {
     };
 
     this.http.post('https://localhost:44371/api/Account/login', user).subscribe(
-      response => {
-        alert('Login successful');
+      (response: any) => {
+        // Access only the token from the response
+        const token = response.token;
+        console.log(token);
+       alert('Login successful');
+       //this.toast.success({detail:"SUCCESS",summary:"Login Successful",duration:5000});
+       //this.toast.success('Login Successful', 'SUCCESS',  5000 );
+
+       //this.toast.success('Login Successful', 'SUCCESS',5000);
+      
+      /* this.toastr.success('Login Successful', 'Success', {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        positionClass: 'toast-top-right'
+      });*/
+
+
         localStorage.setItem('currentUser', JSON.stringify(response));
+        this.auth.storeToken(token);
         this.router.navigate(['/navbar']); // Navigate to the dashboard after successful login
 
         // Reset the email and password fields

@@ -7,6 +7,7 @@ import { RecordSalesComponent } from './record-sales/record-sales.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -15,19 +16,19 @@ const routes: Routes = [
   },
   {
   path:'products',
-  component:ProductsComponent
+  component:ProductsComponent,canActivate:[AuthGuard]
   },
   {
     path:'create-product',
-    component:CreateProductComponent
+    component:CreateProductComponent,canActivate:[AuthGuard]
     },
     {
       path:'report',
-      component:ReportComponent
+      component:ReportComponent,canActivate:[AuthGuard]
     },
     {
       path:'record-sales',
-      component:RecordSalesComponent
+      component:RecordSalesComponent,canActivate:[AuthGuard]
     },
    
     {
@@ -36,7 +37,7 @@ const routes: Routes = [
     },
     {
       path:'navbar',
-      component:NavbarComponent
+      component:NavbarComponent,canActivate:[AuthGuard]
     }
 ];
 

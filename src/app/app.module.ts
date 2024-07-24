@@ -14,6 +14,9 @@ import { RecordSalesComponent } from './record-sales/record-sales.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+//import {NgToastModule} from 'ng-angular-popup';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -30,10 +33,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, // Ensure FormsModule is here
+    FormsModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    //NgToastModule,
+   // BrowserAnimationsModule,
+    //ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
