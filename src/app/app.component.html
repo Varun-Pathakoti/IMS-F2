@@ -4,16 +4,24 @@
   </a>
   <h1>INVENTORY MANAGEMENT SYSTEM</h1>
 
-  <ng-container *ngIf="!isAuthenticated">
- 
+  <ng-container *ngIf="!auth.isLoggedIn()">
     <a class="active1" routerLink="/register">Register</a>
   </ng-container>
 
-  <ng-container *ngIf="isAuthenticated">
-    <app-navbar></app-navbar>
-    <span>Welcome, {{ username }}!</span>
+  <ng-container *ngIf="auth.isLoggedIn()">
+    
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/create-product" routerLinkActive="active">Create</a>
+    <a routerLink="/report" routerLinkActive="active">Report</a>
+    <a routerLink="/sale" routerLinkActive="active">SaleTable</a>
+    <a routerLink="/record-sales" routerLinkActive="active">Sale</a>
+    
+    <div class="user-info">
+      <img src="assets/pictures/usericon.png" alt="User Icon" class="logo">
+      <span class="username">{{ username }}</span>
+    </div>
+    <button class="logout-button" (click)="logout()">Logout</button>
   </ng-container>
 </div>
 
 <router-outlet></router-outlet>
-

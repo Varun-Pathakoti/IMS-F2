@@ -2,8 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class LoginComponent {
   @ViewChild('usernameRef', { static: false }) usernameRef!: ElementRef;
   @ViewChild('faceRef', { static: false }) faceRef!: ElementRef;
 
-  constructor(private http: HttpClient, private router: Router,private auth: AuthService ) {}
+  constructor(private http: HttpClient, private router: Router,private auth: AuthService, private toastr:ToastrService ) {}
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
@@ -59,8 +58,9 @@ export class LoginComponent {
         // Access only the token from the response
         const token = response.token;
         console.log(token);
-       alert('Login successful');
-       //this.toast.success({detail:"SUCCESS",summary:"Login Successful",duration:5000});
+       //alert('Login successful');
+       this.toastr.success('Login Successful');
+       
        //this.toast.success('Login Successful', 'SUCCESS',  5000 );
 
        //this.toast.success('Login Successful', 'SUCCESS',5000);
@@ -83,6 +83,7 @@ export class LoginComponent {
       },
       error => {
         console.error('Login failed', error);
+        this.toastr.error('Login failed');
         this.errorMessage = 'Login failed. Please check your email and password.';
 
         // Reset the email and password fields

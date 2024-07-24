@@ -1,60 +1,58 @@
-
 .topnav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px;
   background-color: #36454f;
   border-bottom: 1px solid #444;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 90px;
-  width: 1630px;
 }
 
-.topnav .logo {
+.logo {
   height: 50px;
   transition: transform 0.3s;
-  margin-left: 40px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #61dafb;
+}
+
+.username {
+  font-size: 16px;
+  color: #ffff;
+  font-weight: 500;
 }
 
 .topnav .logo:hover {
   transform: scale(1.1);
 }
 
-.topnav h1 {
+h1 {
   margin: 0;
-  font-size: 35px;
-  color: #ffff;
-  margin-left: -40px;
+  font-size: 30px;
+  color: #fff;
 }
 
 .topnav a {
-  margin: 0 15px;
+  margin: 0 5px; 
   text-decoration: none;
-  color: #61dafb;
-  font-weight: 500;
+  color: #fff;
+  font-weight: 200;
   position: relative;
   transition: color 0.3s, transform 0.3s;
   font-size: medium;
-  margin-right:90px;
 }
 
 .topnav a:hover {
-  color: #ffff;
+  color: #fff;
   transform: scale(1.1);
 }
 
 .topnav a.active {
   font-weight: bold;
-  color: #ffff;
-  left:220px;
-  
-}
-.topnav a.active1 {
-  font-weight: bold;
-  color: #ffff;
-
-  
 }
 
 .navbar {
@@ -104,21 +102,14 @@
   transform: scale(1.1);
 }
 
-.navbar ul li a.active {
-  font-weight: bold;
-}
 
-.user-info {
+
+/* Updated CSS for positioning logo and username vertically */
+.topnav .user-info {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  color: #61dafb;
-}
-
-.username {
-  margin-right: 15px;
-  font-size: 16px;
-  color: #61dafb;
-  font-weight: 500;
+  margin-right: 20px;
 }
 
 .logout-button {
@@ -151,8 +142,7 @@
     margin: 10px 0;
   }
 
-  .username {
+  .user-info {
     margin-bottom: 10px;
   }
 }
-

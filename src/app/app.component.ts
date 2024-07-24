@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,9 +12,18 @@ export class AppComponent implements OnInit {
   public username: string = '';
   public email: string = '';
 
-  constructor( private router: Router) {}
+  constructor( private router: Router,public auth:AuthService) {}
 
   ngOnInit(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.username = currentUser.username
+  }
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.auth.isLoggedIn;
+    this.username = '';
+    this.router.navigate(['/']);
   }
 }
     /* this.authService.getCurrentUser().subscribe(user => {

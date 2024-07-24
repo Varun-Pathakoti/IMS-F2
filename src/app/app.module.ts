@@ -13,10 +13,11 @@ import { ReportComponent } from './report/report.component';
 import { RecordSalesComponent } from './record-sales/record-sales.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
-//import {NgToastModule} from 'ng-angular-popup';
+//import { NavbarComponent } from './navbar/navbar.component';
+//import {ToastModule} from 'ng-angular-popup';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+import { SaleComponent } from './sale/sale.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RecordSalesComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    SaleComponent,
+   // NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +40,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     MatIconModule,
     //NgToastModule,
-   // BrowserAnimationsModule,
-    //ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
