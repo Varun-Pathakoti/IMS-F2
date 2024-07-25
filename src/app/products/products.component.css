@@ -44,3 +44,8 @@
 .card p:last-child {
   font-weight: bold;
 }
+
+.delete{
+  height:5px;
+  width:5px;
+}

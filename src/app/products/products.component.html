@@ -21,6 +21,8 @@
       <input type="number" id="newStock" [(ngModel)]="newStock">
       <!-- Submit button -->
       <button [disabled]="newStock === productDetails.stockLevel" (click)="updateStock()">Submit</button>
+
+      <button (click)="deleteProduct(productDetails.productID)"><mat-icon>delete</mat-icon></button>
       <!-- Success message -->
       <p *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</p>
       <!-- Error message -->
@@ -28,13 +30,13 @@
     </div>
   </div>
 </div>
-
 <hr>
 
 <!-- Display list of products -->
 <div class="card-container">
   <div class="card" *ngFor="let product of productList">
     <div class="card-header">
+      <img src="{{product.image}}" style="width:100%">
       <h2>{{ product.productName }}</h2>
       <p class="price">{{ product.price }}</p>
     </div>

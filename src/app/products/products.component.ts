@@ -60,4 +60,22 @@ export class ProductsComponent implements OnInit {
         this.updateErrorMessage = "Failed to update stock. Please try again later.";
       });
   }
+
+  deleteProduct(productId: number) {
+    this.http.delete(`https://localhost:44335/delete/${productId}`)
+      .subscribe(() => {
+        // After deleting, refresh the product list
+        this.getAllProduct();
+        
+        // If the deleted product is currently selected, reset the selection
+        if (this.productId === productId) {
+          this.productDetails = null;
+          this.productId = 0;
+        }
+      }, (error) => {
+        console.error("Failed to delete product", error);
+        // Handle error if needed
+      });
+  }
+  
 }

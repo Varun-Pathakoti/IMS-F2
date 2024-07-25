@@ -1,22 +1,61 @@
 .sales-container {
-    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .sales-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #36454f;
   }
   
   table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
   }
   
-  table, th, td {
-    border: 1px solid #ddd;
+  thead {
+    background-color: #36454f;
+    color: #fff;
   }
   
-  th, td {
-    padding: 8px;
+  th,
+  td {
+    padding: 10px;
     text-align: left;
   }
   
   th {
-    background-color: #f4f4f4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transform: scale(1.01);
+    transition: transform 0.2s;
+  }
+  
+  tbody td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  p {
+    text-align: center;
+    color: #ff6f61;
   }
   
