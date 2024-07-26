@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -17,7 +18,7 @@ export class ProductsComponent implements OnInit {
   // Track updated fields
   updatedProduct: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router:Router) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -27,6 +28,7 @@ export class ProductsComponent implements OnInit {
     this.http.get("https://localhost:44335/api/Products")
       .subscribe((res: any) => {
         this.productList = res;
+        this.checkStockLevels(); // Update stock levels
       }, error => {
         console.error("Error fetching product list", error);
         this.updateErrorMessage = "Error fetching product list. Please try again later.";
@@ -40,7 +42,7 @@ export class ProductsComponent implements OnInit {
     if (this.searchCriteria === 'id') {
       const id = parseInt(this.searchValue, 10);
       if (isNaN(id) || id <= 0) {
-        this.updateErrorMessage = "Please enter a valid Product ID.";
+        alert("Please enter a valid Product ID.");
         return;
       }
 
@@ -48,8 +50,9 @@ export class ProductsComponent implements OnInit {
         .subscribe((res: any) => {
           this.productDetails = res;
           this.updatedProduct = { ...res };
+          this.checkStockLevels(); // Ensure stock levels are checked
         }, error => {
-          console.error("Product not found", error);
+          alert("Product not found");
           this.productDetails = null;
           this.updateErrorMessage = "Product not found. Please enter a valid Product ID.";
         });
@@ -66,8 +69,9 @@ export class ProductsComponent implements OnInit {
       .subscribe((res: any) => {
         this.productList = res;
         this.productDetails = null;
+        this.checkStockLevels(); // Update stock levels after search
       }, error => {
-        console.error("Error fetching products by name", error);
+        alert("Error fetching products by name");
         this.productList = [];
         this.updateErrorMessage = "Error fetching products. Please try again later.";
       });
@@ -89,8 +93,12 @@ export class ProductsComponent implements OnInit {
     this.http.put(`https://localhost:44335/update/${this.productDetails.productID}`, this.updatedProduct)
       .subscribe((res: any) => {
         this.updateSuccessMessage = "Product updated successfully";
+       
         this.productDetails = res;
-        this.getAllProducts(); // Refresh product list
+        this.getAllProducts(); // Refresh product list and check stock levels
+        this.router.navigate(['/products']).then(() => {
+          window.location.reload(); // Refresh the page
+        });
       }, error => {
         console.error("Failed to update product", error);
         this.updateErrorMessage = "Failed to update product. Please try again later.";
@@ -108,5 +116,16 @@ export class ProductsComponent implements OnInit {
         console.error("Failed to delete product", error);
         this.updateErrorMessage = "Failed to delete product. Please try again later.";
       });
+  }
+
+  // Method to check stock levels
+  checkStockLevels() {
+    this.productList.forEach(product => {
+      if (product.stockLevel <= product.threshold) {
+        product.stockStatus = 'Low Stock';
+      } else {
+        product.stockStatus = 'Available';
+      }
+    });
   }
 }

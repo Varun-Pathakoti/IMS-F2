@@ -59,3 +59,40 @@
     color: #ff6f61;
   }
   
+  /* Container for the sort dropdown */
+.sort-container {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the label */
+.sort-container label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px; /* Space between label and dropdown */
+}
+
+/* Style for the select dropdown */
+.sort-container select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Style for the dropdown on focus */
+.sort-container select:focus {
+  border-color: #4CAF50; /* Change border color on focus */
+}
+
+/* Option styling */
+.sort-container option {
+  padding: 10px;
+}

@@ -1,4 +1,5 @@
-<div>
+<!-- Search Section -->
+<div class="sort-container">
   <label for="searchCriteria">Search By:</label>
   <select id="searchCriteria" [(ngModel)]="searchCriteria">
     <option value="id">ID</option>
@@ -6,63 +7,68 @@
   </select>
 </div>
 
-<div>
-  <label for="searchValue">Search:</label>
+<div class="search-container">
+  <label for="searchValue"></label>
   <input class="search" type="text" id="searchValue" [(ngModel)]="searchValue">
-  <button (click)="searchProduct()">Search</button>
+  <button (click)="searchProduct()">
+    Search
+    <mat-icon>search</mat-icon> <!-- Material Icon for search -->
+  </button>
 </div>
 
 <hr>
 
-<div class="card-container" *ngIf="productList.length > 0">
+<!-- Product List -->
+<div *ngIf="!productDetails && productList.length > 0" class="card-container">
   <div
-    class="card"
+    class="card list-view"
     *ngFor="let product of productList"
-    [class.detail-view]="productDetails && productDetails.productID === product.productID"
-    [class.list-view]="!productDetails || productDetails.productID !== product.productID"
     (click)="showProductDetails(product)"
   >
     <div class="card-header">
       <img [src]="product.image" alt="{{ product.productName }}" style="width:100%">
       <h2>{{ product.productName }}</h2>
-      <p class="price">{{ product.price }}</p>
-    </div>
-    <div class="card-body" *ngIf="productDetails && productDetails.productID === product.productID">
-      <p>{{ product.description }}</p>
-      <p><strong>Stock Level:</strong> {{ product.stockLevel }}</p>
+    
+      <p [ngClass]="{'stock': true, 'low-stock': product.stockStatus === 'Low Stock', 'available-stock': product.stockStatus === 'Available'}">
+        {{ product.stockStatus }}
+      </p>
+      
+      <p class="price">₹{{ product.price }}</p>
+
     </div>
   </div>
 </div>
 
-<hr>
+<!-- Product Detail View -->
+<div *ngIf="productDetails" class="product-detail-view">
+  <div class="product-image">
+    <img [src]="productDetails.image" alt="{{ productDetails.productName }}">
+  </div>
+  <div class="product-info">
+    <h2>{{ productDetails.productName }}</h2>
+    <p><strong>Description:</strong> {{ productDetails.description }}</p>
+    <p><strong>Stock Level:</strong> {{ productDetails.stockLevel }}</p>
+    <p><strong>Price:</strong> {{ productDetails.price }}</p>
 
-<div *ngIf="productDetails" class="card-container">
-  <div class="card detail-view">
-    <div class="card-header">
-      <h2>{{ productDetails.productName }}</h2>
-      <p class="price">{{ productDetails.price }}</p>
-    </div>
-    <div class="card-body">
-      <label for="productName">Product Name:</label>
-      <input type="text" id="productName" [(ngModel)]="updatedProduct.productName">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" [(ngModel)]="updatedProduct.productName">
 
-      <label for="description">Description:</label>
-      <input type="text" id="description" [(ngModel)]="updatedProduct.description">
+    <label for="description">Description:</label>
+    <input type="text" id="description" [(ngModel)]="updatedProduct.description">
 
-      <label for="price">Price:</label>
-      <input type="number" id="price" [(ngModel)]="updatedProduct.price">
+    <label for="price">Price:</label>
+    <input type="number" id="price" [(ngModel)]="updatedProduct.price">
 
-      <label for="threshold">Threshold:</label>
-      <input type="number" id="threshold" [(ngModel)]="updatedProduct.threshold">
+    <label for="threshold">Threshold:</label>
+    <input type="number" id="threshold" [(ngModel)]="updatedProduct.threshold">
 
-      <label for="stockLevel">Stock Level:</label>
-      <input type="number" id="stockLevel" [(ngModel)]="updatedProduct.stockLevel">
+    <label for="stockLevel">Stock Level:</label>
+    <input type="number" id="stockLevel" [(ngModel)]="updatedProduct.stockLevel">
 
-      <button (click)="updateProduct()">Update Product</button>
-      <button (click)="deleteProduct(productDetails.productID)"><mat-icon>delete</mat-icon></button>
+    <button (click)="updateProduct()">Update Product</button>
+    <button (click)="deleteProduct(productDetails.productID)"><mat-icon>delete</mat-icon></button>
 
-      <p *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</p>
-      <p *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</p>
-    </div>
+    <p *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</p>
+    <p *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</p>
   </div>
 </div>

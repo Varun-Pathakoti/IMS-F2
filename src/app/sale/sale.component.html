@@ -1,25 +1,36 @@
 <div class="sales-container">
-    <h2>Sales List</h2>
-    <table *ngIf="sales.length > 0">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Product ID</th>
-          <th>Product Name</th>
-          <th>Quantity</th>
-          <th>Sale Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let sale of sales">
-          <td>{{ sale.id }}</td>
-          <td>{{ sale.productId }}</td>
-          <td>{{ sale.productName }}</td>
-          <td>{{ sale.quantity }}</td>
-          <td>{{ sale.saleDate | date }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <p *ngIf="error">{{ error }}</p>
+  <h2>SALES LIST</h2>
+  
+  <div class="sort-container">
+    <label for="sortBy">Sort By:</label>
+    <select id="sortBy" (change)="onSortChange($event)">
+      <option value="id">ID</option>
+      <option value="productName">Product Name</option>
+      <option value="saleDate">Sale Date</option>
+      <option value="quantity">Quantity</option>
+    </select>
   </div>
   
+  <table *ngIf="sales.length > 0">
+    <thead>
+      <tr>
+        <th>Sale ID</th>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Sale Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales">
+        <td>{{ sale.id }}</td>
+        <td>{{ sale.productId }}</td>
+        <td>{{ sale.productName }}</td>
+        <td>{{ sale.quantity }}</td>
+        <td>{{ sale.saleDate | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p *ngIf="error">{{ error }}</p>
+</div>

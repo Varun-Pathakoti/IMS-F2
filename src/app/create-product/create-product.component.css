@@ -2,6 +2,7 @@
 html, body {
   height: 100%;
   margin: 0;
+
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   display: flex;
@@ -15,22 +16,30 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
+ 
 }
-
+/* General Form Styles */
 form {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
+  
   background-color: #fff;
   padding: 40px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding-left: 35%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 -10px 20px rgba(0, 0, 0, 0.1); /* Shadow on both sides */
+  margin: 20px auto; /* Center the form */
+  padding-left: 3%; /* Adjust padding to ensure proper alignment */
+  /* Ensure padding does not affect width */  
 }
+
+/* Other styles remain unchanged */
+
 
 form h2 {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
+
 }
 
 form div {
@@ -42,6 +51,7 @@ form div {
 form label {
   margin-bottom: 8px;
   color: #555;
+  
 }
 
 /* Specific styling for Product Name and Description */
@@ -49,6 +59,7 @@ form input#productName,
 form input#description ,
 form input#image{
   padding: 12px;
+  max-width: f;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -56,6 +67,7 @@ form input#image{
   width: 100%; /* Ensures input fields span the full width */
   background-color: #f9f9f9; /* Set background color for input fields */
   height: 50px; /* Set equal height for these specific input fields */
+
 }
 
 /* General styling for all input fields */
@@ -69,6 +81,7 @@ form input[type="number"] {
   width: 100%; /* Ensures input fields span the full width */
   background-color: #f9f9f9; /* Set background color for input fields */
   height: 50px; /* Set equal height for all input fields */
+  
 }
 
 form button {

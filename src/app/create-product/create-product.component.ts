@@ -38,7 +38,6 @@ export class CreateProductComponent implements OnInit {
       const product: Product = this.productForm.value;
       this.createProduct(product).subscribe(
         response => {
-          console.log('Product created successfully', response);
           this.productForm.reset();
           alert('Product created successfully'); // Display alert for success
         },

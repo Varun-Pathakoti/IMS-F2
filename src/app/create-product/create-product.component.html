@@ -1,29 +1,51 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+<div class="form-container">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <h2>Create New Product</h2>
-    <div>
-      <label for="productName">Product Name:</label>
-      <input id="productName" formControlName="productName">
+    <div class="form-group">
+        <label for="productName">
+            <i class="material-icons">label</i>
+            Product Name:
+        </label>
+        <input id="productName" formControlName="productName">
     </div>
-    <div>
-      <label for="description">Description:</label>
-      <input id="description" formControlName="description">
+    <div class="form-group">
+        <label for="description">
+            <i class="material-icons">description</i>
+            Description:
+        </label>
+        <input id="description" formControlName="description">
     </div>
-    <div>
-      <label for="image">Image:</label>
-      <input id="image" formControlName="image">
+    <div class="form-group">
+        <label for="image">
+            <i class="material-icons">image</i>
+            Image URL:
+        </label>
+        <input id="image" formControlName="image">
     </div>
-    <div>
-      <label for="price">Price:</label>
-      <input id="price" formControlName="price" type="number">
+    <div class="form-group">
+        <label for="price">
+            <i class="material-icons">attach_money</i>
+            Price:
+        </label>
+        <input id="price" formControlName="price" type="number">
     </div>
-    <div>
-      <label for="threshold">Threshold:</label>
-      <input id="threshold" formControlName="threshold" type="number">
+    <div class="form-group">
+        <label for="threshold">
+            <i class="material-icons">filter_list</i>
+            Threshold:
+        </label>
+        <input id="threshold" formControlName="threshold" type="number">
     </div>
-    <div>
-      <label for="stockLevel">Stock Level:</label>
-      <input id="stockLevel" formControlName="stockLevel" type="number">
+    <div class="form-group">
+        <label for="stockLevel">
+            <i class="material-icons">inventory</i>
+            Stock Level:
+        </label>
+        <input id="stockLevel" formControlName="stockLevel" type="number">
     </div>
-    <button type="submit" [disabled]="!productForm.valid">Create Product</button>
+    <button type="submit" [disabled]="!productForm.valid">
+        <i class="material-icons">add_circle</i>
+        Create Product
+    </button>
   </form>
-  
+</div>
