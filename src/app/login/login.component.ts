@@ -75,7 +75,7 @@ export class LoginComponent {
 
         localStorage.setItem('currentUser', JSON.stringify(response));
         this.auth.storeToken(token);
-        this.router.navigate(['/navbar']); // Navigate to the dashboard after successful login
+        this.router.navigate(['/products']); // Navigate to the dashboard after successful login
 
         // Reset the email and password fields
         this.email = '';

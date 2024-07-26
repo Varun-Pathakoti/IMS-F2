@@ -19,6 +19,9 @@ import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SaleComponent } from './sale/sale.component';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +44,9 @@ import { SaleComponent } from './sale/sale.component';
     MatIconModule,
     //NgToastModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      
-    })
+  
+    ToastrModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

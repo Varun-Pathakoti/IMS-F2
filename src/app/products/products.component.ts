@@ -8,74 +8,105 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit {
   productList: any[] = [];
-  productId: number = 0;
   productDetails: any = null;
-  newStock: number = 0; // Track the new stock value
-
+  searchCriteria: string = 'id';
+  searchValue: string = '';
   updateSuccessMessage: string = '';
   updateErrorMessage: string = '';
+
+  // Track updated fields
+  updatedProduct: any = {};
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getAllProduct();
+    this.getAllProducts();
   }
 
-  getAllProduct() {
+  getAllProducts() {
     this.http.get("https://localhost:44335/api/Products")
       .subscribe((res: any) => {
         this.productList = res;
+      }, error => {
+        console.error("Error fetching product list", error);
+        this.updateErrorMessage = "Error fetching product list. Please try again later.";
       });
   }
 
-  searchProductById() {
-    // Reset messages
+  searchProduct() {
     this.updateSuccessMessage = '';
     this.updateErrorMessage = '';
 
-    if (this.productId === 0) {
-      this.updateErrorMessage = "Please enter a valid Product ID.";
-      return;
-    }
+    if (this.searchCriteria === 'id') {
+      const id = parseInt(this.searchValue, 10);
+      if (isNaN(id) || id <= 0) {
+        this.updateErrorMessage = "Please enter a valid Product ID.";
+        return;
+      }
 
-    this.http.get(`https://localhost:44335/api/Products/${this.productId}`)
+      this.http.get(`https://localhost:44335/api/Products/${id}`)
+        .subscribe((res: any) => {
+          this.productDetails = res;
+          this.updatedProduct = { ...res };
+        }, error => {
+          console.error("Product not found", error);
+          this.productDetails = null;
+          this.updateErrorMessage = "Product not found. Please enter a valid Product ID.";
+        });
+    } else if (this.searchCriteria === 'name') {
+      this.searchProductByName();
+    }
+  }
+
+  searchProductByName() {
+    this.updateSuccessMessage = '';
+    this.updateErrorMessage = '';
+
+    this.http.get(`https://localhost:44335/getbyname/${this.searchValue}`)
       .subscribe((res: any) => {
-        this.productDetails = res;
-        this.newStock = this.productDetails.stockLevel; // Initialize newStock with current stock level
-      }, (error) => {
-        console.error("Product not found", error);
+        this.productList = res;
         this.productDetails = null;
-        this.updateErrorMessage = "Product not found. Please enter a valid Product ID.";
+      }, error => {
+        console.error("Error fetching products by name", error);
+        this.productList = [];
+        this.updateErrorMessage = "Error fetching products. Please try again later.";
       });
   }
 
-  updateStock() {
-    const updatedProduct = { ...this.productDetails, stockLevel: this.newStock };
-    this.http.put(`https://localhost:44335/update/${this.productId}/${this.newStock}`, updatedProduct)
+  showProductDetails(product: any) {
+    this.productDetails = product;
+    this.updatedProduct = { ...product };
+    this.updateSuccessMessage = '';
+    this.updateErrorMessage = '';
+  }
+
+  updateProduct() {
+    if (!this.productDetails) {
+      this.updateErrorMessage = "No product selected for update.";
+      return;
+    }
+
+    this.http.put(`https://localhost:44335/update/${this.productDetails.productID}`, this.updatedProduct)
       .subscribe((res: any) => {
-        this.updateSuccessMessage = "Stock updated successfully";
-        this.productDetails = res; // Update local product details with response
-      }, (error) => {
-        console.error("Failed to update stock", error);
-        this.updateErrorMessage = "Failed to update stock. Please try again later.";
+        this.updateSuccessMessage = "Product updated successfully";
+        this.productDetails = res;
+        this.getAllProducts(); // Refresh product list
+      }, error => {
+        console.error("Failed to update product", error);
+        this.updateErrorMessage = "Failed to update product. Please try again later.";
       });
   }
 
   deleteProduct(productId: number) {
-    this.http.delete(`https://localhost:44335/delete/${productId}`)
+    this.http.delete(`https://localhost:44335/api/Products/${productId}`)
       .subscribe(() => {
-        // After deleting, refresh the product list
-        this.getAllProduct();
-        
-        // If the deleted product is currently selected, reset the selection
-        if (this.productId === productId) {
+        this.getAllProducts();
+        if (this.productDetails && this.productDetails.productID === productId) {
           this.productDetails = null;
-          this.productId = 0;
         }
-      }, (error) => {
+      }, error => {
         console.error("Failed to delete product", error);
-        // Handle error if needed
+        this.updateErrorMessage = "Failed to delete product. Please try again later.";
       });
   }
-  
 }
