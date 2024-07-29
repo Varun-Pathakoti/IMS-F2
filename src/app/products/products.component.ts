@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   // Track updated fields
   updatedProduct: any = {};
 
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit {
       }, error => {
         console.error("Error fetching product list", error);
         this.updateErrorMessage = "Error fetching product list. Please try again later.";
+        alert(this.updateErrorMessage);
       });
   }
 
@@ -42,7 +43,8 @@ export class ProductsComponent implements OnInit {
     if (this.searchCriteria === 'id') {
       const id = parseInt(this.searchValue, 10);
       if (isNaN(id) || id <= 0) {
-        alert("Please enter a valid Product ID.");
+        this.updateErrorMessage = "Please enter a valid Product ID.";
+        alert(this.updateErrorMessage);
         return;
       }
 
@@ -52,9 +54,10 @@ export class ProductsComponent implements OnInit {
           this.updatedProduct = { ...res };
           this.checkStockLevels(); // Ensure stock levels are checked
         }, error => {
-          alert("Product not found");
-          this.productDetails = null;
+          console.error("Product not found", error);
           this.updateErrorMessage = "Product not found. Please enter a valid Product ID.";
+          alert(this.updateErrorMessage);
+          this.productDetails = null;
         });
     } else if (this.searchCriteria === 'name') {
       this.searchProductByName();
@@ -67,13 +70,21 @@ export class ProductsComponent implements OnInit {
 
     this.http.get(`https://localhost:44335/getbyname/${this.searchValue}`)
       .subscribe((res: any) => {
-        this.productList = res;
-        this.productDetails = null;
-        this.checkStockLevels(); // Update stock levels after search
+        if (res && res.length > 0) {
+          this.productList = res;
+          this.productDetails = null;
+          this.checkStockLevels(); // Update stock levels after search
+        } else {
+          this.updateErrorMessage = "Product not available.";
+          alert(this.updateErrorMessage);
+          this.productList = [];
+          this.refreshPage();
+        }
       }, error => {
-        alert("Error fetching products by name");
+        console.error("Error fetching products by name", error);
+        this.updateErrorMessage = "Error fetching products by name. Please try again later.";
+        alert(this.updateErrorMessage);
         this.productList = [];
-        this.updateErrorMessage = "Error fetching products. Please try again later.";
       });
   }
 
@@ -87,13 +98,14 @@ export class ProductsComponent implements OnInit {
   updateProduct() {
     if (!this.productDetails) {
       this.updateErrorMessage = "No product selected for update.";
+      alert(this.updateErrorMessage);
       return;
     }
 
     this.http.put(`https://localhost:44335/update/${this.productDetails.productID}`, this.updatedProduct)
       .subscribe((res: any) => {
         this.updateSuccessMessage = "Product updated successfully";
-       
+        alert(this.updateSuccessMessage);
         this.productDetails = res;
         this.getAllProducts(); // Refresh product list and check stock levels
         this.router.navigate(['/products']).then(() => {
@@ -102,19 +114,22 @@ export class ProductsComponent implements OnInit {
       }, error => {
         console.error("Failed to update product", error);
         this.updateErrorMessage = "Failed to update product. Please try again later.";
+        alert(this.updateErrorMessage);
       });
   }
 
   deleteProduct(productId: number) {
-    this.http.delete(`https://localhost:44335/api/Products/${productId}`)
+    this.http.delete(`https://localhost:44335/delete/${productId}`)
       .subscribe(() => {
         this.getAllProducts();
         if (this.productDetails && this.productDetails.productID === productId) {
           this.productDetails = null;
         }
+        alert("Product deleted successfully");
       }, error => {
         console.error("Failed to delete product", error);
         this.updateErrorMessage = "Failed to delete product. Please try again later.";
+        alert(this.updateErrorMessage);
       });
   }
 
@@ -126,6 +141,13 @@ export class ProductsComponent implements OnInit {
       } else {
         product.stockStatus = 'Available';
       }
+    });
+  }
+
+  // Method to refresh the page
+  refreshPage() {
+    this.router.navigate(['/products']).then(() => {
+      window.location.reload();
     });
   }
 }

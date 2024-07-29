@@ -34,6 +34,7 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    console.log("first")
     if (this.productForm.valid) {
       const product: Product = this.productForm.value;
       this.createProduct(product).subscribe(
