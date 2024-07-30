@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 interface Product {
   productName: string;
   description: string;
+  image: string;
   price: number;
   threshold: number;
   stockLevel: number;
@@ -34,23 +35,37 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    console.log("first")
-    if (this.productForm.valid) {
-      const product: Product = this.productForm.value;
-      this.createProduct(product).subscribe(
-        response => {
-          this.productForm.reset();
-          alert('Product created successfully'); // Display alert for success
-        },
-        error => {
-          console.error('Error creating product', error);
-          alert('Failed to create product'); // Display alert for error
-        }
-      );
-    }
+    this.productForm.markAllAsTouched();
+
+   
+
+    const product: Product = this.productForm.value;
+    this.createProduct(product).subscribe(
+      response => {
+        this.productForm.reset();
+        alert('Product created successfully');
+      },
+      error => {
+        console.error('Error creating product:', error);
+        alert('Failed to create product. Please try again later.');
+      }
+    );
   }
 
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product);
+  }
+
+  getErrorMessage(controlName: string): string | null {
+    const control = this.productForm.get(controlName);
+    if (control && control.errors) {
+      if (control.errors['required']) {
+        return `${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is required.`;
+      }
+      if (control.errors['min']) {
+        return `${controlName.charAt(0).toUpperCase() + controlName.slice(1)} must be a positive number.`;
+      }
+    }
+    return null;
   }
 }

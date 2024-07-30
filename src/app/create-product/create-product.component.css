@@ -111,3 +111,10 @@ form button:hover {
     padding: 20px;
   }
 }
+
+/* create-product.component.css */
+
+.error{
+  color: red;
+  font-size: 0.875em;
+}
