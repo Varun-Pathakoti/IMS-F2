@@ -1,36 +1,48 @@
-<div class="login-container">
-  <form (ngSubmit)="onSubmit()" class="login-form">
-    <div class="emoji-container">
-      <img src="assets/pictures/image1.jpg" alt="Logo" class="logo">
-    </div>
-    <div class="form-group">
-      <input
-        type="text"
-        placeholder="Username"
-        [(ngModel)]="email"
-        name="email"
-        #usernameRef
-        (focus)="handleUsernameFocus()"
-        (blur)="handleUsernameBlur()"
-        (input)="handleUsernameInput($event)"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <input
-        [type]="passwordVisible ? 'text' : 'password'"
-        placeholder="Password"
-        [(ngModel)]="password"
-        name="password"      
-      />
-      <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
-        {{ passwordVisible ? '' : '' }}
-      </button>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="login-button">Login</button>
-    </div>
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-  </form>
-</div>
+<div class="container">
+  <!-- Left Half: Login Form -->
+  <div class="login-container">
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <div class="emoji-container">
+        <img src="assets/pictures/image1.jpg" alt="Logo" class="logo">
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Username"
+          [(ngModel)]="email"
+          name="email"
+          #usernameRef
+          (focus)="handleUsernameFocus()"
+          (blur)="handleUsernameBlur()"
+          (input)="handleUsernameInput($event)"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"      
+        />
+        <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+          {{ passwordVisible ? '' : '' }}
+        </button>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="login-button">Login</button>
+      </div>
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
 
+  <!-- Right Half: Image and Text -->
+  <div class="info-container">
+    <img src="assets/pictures/inventory.png" alt="Inventory Management" class="info-image">
+    <div class="info-text">
+      <h1>ENGINEERED TO HANDLE ALL YOUR </h1>
+      <h2>INVENTORY NEEDS</h2>
+      <p>Your complete inventory management software to track inventory, streamline sales, fulfill orders, and oversee warehouses from a single window.</p>
+    </div>
+  </div>
+</div>

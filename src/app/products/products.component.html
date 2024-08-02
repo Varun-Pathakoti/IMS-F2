@@ -34,7 +34,6 @@
       </p>
       
       <p class="price">₹{{ product.price }}</p>
-
     </div>
   </div>
 </div>
@@ -72,3 +71,12 @@
     <p *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</p>
   </div>
 </div>
+
+<!-- Additional Detail View if needed -->
+<ng-template #productListTemplate>
+  <div *ngFor="let product of productList" (click)="showProductDetails(product)">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p>Stock Status: {{ product.stockStatus }}</p>
+  </div>
+</ng-template>

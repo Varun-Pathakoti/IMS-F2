@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit {
           this.productDetails = res;
           this.updatedProduct = { ...res };
           this.checkStockLevels(); // Ensure stock levels are checked
+          this.router.navigate(['/products', res.productID]);
         }, error => {
           console.error("Product not found", error);
           this.updateErrorMessage = "Product not found. Please enter a valid Product ID.";
@@ -89,11 +90,15 @@ export class ProductsComponent implements OnInit {
   }
 
   showProductDetails(product: any) {
+    this.router.navigate(['/products', product.productID]);
     this.productDetails = product;
     this.updatedProduct = { ...product };
     this.updateSuccessMessage = '';
-    this.updateErrorMessage = '';
+    this.updateErrorMessage = '';        
   }
+  /*goBack() {
+    this.router.navigate(['/products']);
+  }*/
 
   updateProduct() {
     if (!this.productDetails) {
@@ -108,9 +113,9 @@ export class ProductsComponent implements OnInit {
         alert(this.updateSuccessMessage);
         this.productDetails = res;
         this.getAllProducts(); // Refresh product list and check stock levels
-        this.router.navigate(['/products']).then(() => {
+      /*  this.router.navigate(['/products']).then(() => {
           window.location.reload(); // Refresh the page
-        });
+        });*/
       }, error => {
         console.error("Failed to update product", error);
         this.updateErrorMessage = "Failed to update product. Please try again later.";

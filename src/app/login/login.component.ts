@@ -53,7 +53,7 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post('https://localhost:44371/api/Account/login', user).subscribe(
+    this.http.post('https://localhost:44371/api/Account/client/login', user).subscribe(
       (response: any) => {
         // Access only the token from the response
         const token = response.token;
@@ -74,6 +74,7 @@ export class LoginComponent {
 
 
         localStorage.setItem('currentUser', JSON.stringify(response));
+        localStorage.setItem('email',JSON.stringify(this.email));
         this.auth.storeToken(token);
         this.router.navigate(['/products']); // Navigate to the dashboard after successful login
         

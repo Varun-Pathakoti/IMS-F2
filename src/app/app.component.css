@@ -12,6 +12,7 @@
 .logo {
   height: 50px;
   transition: transform 0.3s;
+  margin-left: 7px;
 }
 
 .user-info {
@@ -30,11 +31,41 @@
   transform: scale(1.1);
 }
 
+/* General styles for the h1 element */
 h1 {
   margin: 0;
   font-size: 30px;
   color: #fff;
+  display: flex;
+  align-items: center; /* Center the icon and text vertically */
+  gap: 10px; /* Space between the icon and text */
+
 }
+
+/* Style for the mat-icon element */
+mat-icon {
+  font-size: 36px; /* Adjust size of the icon */
+  color: #fff; /* Adjust color of the icon */
+  margin-top: -10px;
+}
+h2 {
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+  display: flex;
+  align-items: center; /* Center the icon and text vertically */
+  gap: 10px; /* Space between the icon and text */
+  margin-right: 650px;
+
+}
+
+/* Style for the mat-icon element */
+mat-icon {
+  font-size: 36px; /* Adjust size of the icon */
+  color: #fff; /* Adjust color of the icon */
+  margin-top: -10px;
+}
+
 
 .topnav a {
   margin: 0 5px; 
@@ -144,5 +175,126 @@ h1 {
 
   .user-info {
     margin-bottom: 10px;
+  }
+}
+
+/* Profile Card Container */
+.profile-card {
+  position: absolute;
+  right: 20px;
+  top: 120px;
+  width: 340px;
+  background: linear-gradient(135deg, #f9f9f9, #e8e8e8);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  font-family: 'Roboto', sans-serif;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: scale(1);
+  opacity: 1;
+  z-index: 1000;
+}
+
+/* Close Button */
+.profile-card .close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.profile-card .close-button:hover {
+  color: #555;
+}
+
+/* Profile Image */
+.profile-img {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.profile-img img {
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Information */
+.profile-info {
+  text-align: left; /* Align text to the left for better readability */
+  margin-top: 20px;
+}
+
+.profile-info h2 {
+  margin: 10px 0;
+  font-size: 28px;
+  color: #333;
+  text-align: center; /* Center align the name */
+  font-weight: bold; /* Make the name bold */
+}
+
+.profile-info p {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  color: #333; /* Darker color for better contrast */
+  font-size: 18px; /* Increased font size */
+  font-weight:100px; /* Make text bold */
+}
+
+.profile-info p i.material-icons {
+  margin-right: 10px; /* Adjust spacing between icon and text */
+  font-size: 24px;
+  color: #36454f; /* Icon color to match the profile image border */
+  vertical-align: middle;
+}
+
+/* Hover and Interaction Effects */
+.profile-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card .user-id {
+  font-weight: 100px;
+  color: #444;
+  
+}
+
+/* Tooltip Arrow */
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #f9f9f9;
+}
+
+/* Animation */
+.profile-card {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }

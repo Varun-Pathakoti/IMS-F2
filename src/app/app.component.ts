@@ -11,16 +11,31 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
   public username: string = '';
   public email: string = '';
+  public id: string = '';
+ public  fullname: string = '';
+ public  image: string = '';
+ public userId: string = ''; 
+ //mail: string = '';
+  isProfileCardVisible: boolean = false;
 
   constructor( private router: Router,public auth:AuthService) {}
 
   ngOnInit(): void {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    this.username = currentUser.username
+    this.username = currentUser.username;
+    this.fullname = currentUser.fullName;
+    this.id = currentUser.id;
+    this.image = currentUser.imageUrl;
+    this.email = localStorage.getItem('email') || currentUser.email; 
+    this.userId = currentUser.$id;
+  }
+  toggleProfileCard() {
+    this.isProfileCardVisible = !this.isProfileCardVisible;
   }
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     this.auth.isLoggedIn;
     this.username = '';
     this.router.navigate(['/']);

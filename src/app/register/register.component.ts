@@ -13,18 +13,25 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  imageUrl:string='';
+  //isClient:boolean=true
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  
   onSubmit() {
+
     const user = {
       fullName: this.fullName,
       username: this.username,
       email: this.email,
-      password: this.password
+      password: this.password,
+      imageUrl:this.imageUrl,
+      isClient:true      
     };
 
-    this.http.post('https://localhost:44371/api/Account/register', user)
+
+    this.http.post('https://localhost:44371/api/Account/client/register', user)
       .subscribe(
         response => {
           alert('Registration successful');
