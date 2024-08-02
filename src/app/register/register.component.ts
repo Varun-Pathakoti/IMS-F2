@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-register',
@@ -35,7 +39,7 @@ export class RegisterComponent {
       .subscribe(
         response => {
           alert('Registration successful');
-          this.router.navigate(['/']); // Navigate to the login page after successful registration
+          this.router.navigate(['/products']); // Navigate to the login page after successful registration
         },
         (error: HttpErrorResponse) => {
           alert('Registration failed');

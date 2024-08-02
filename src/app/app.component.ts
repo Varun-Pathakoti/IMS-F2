@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
  public  fullname: string = '';
  public  image: string = '';
  public userId: string = ''; 
+ public role: string = ''; 
  //mail: string = '';
   isProfileCardVisible: boolean = false;
 
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     this.image = currentUser.imageUrl;
     this.email = localStorage.getItem('email') || currentUser.email; 
     this.userId = currentUser.$id;
+    this.role = currentUser.role;
   }
   toggleProfileCard() {
     this.isProfileCardVisible = !this.isProfileCardVisible;

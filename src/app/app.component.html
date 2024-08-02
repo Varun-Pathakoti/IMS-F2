@@ -16,8 +16,8 @@
     <a routerLink="/report" routerLinkActive="active">Report</a>
     <a routerLink="/sale" routerLinkActive="active">SaleTable</a>
     <a routerLink="/record-sales" routerLinkActive="active">Sale</a>
-    <a class="active1" routerLink="/register">Register</a>
-    
+    <a *ngIf="role === 'admin'" class="active1" routerLink="/register">Register</a>
+
     <div class="user-info" (click)="toggleProfileCard()">
       <img src="assets/pictures/usericon.png" alt="User Icon" class="logo">
       <span class="username">{{ username }}</span>

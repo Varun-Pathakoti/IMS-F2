@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // This is also needed for reactive forms
 import {MatIconModule} from '@angular/material/icon';
@@ -13,11 +13,13 @@ import { ReportComponent } from './report/report.component';
 import { RecordSalesComponent } from './record-sales/record-sales.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
 //import { NavbarComponent } from './navbar/navbar.component';
 //import {ToastModule} from 'ng-angular-popup';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SaleComponent } from './sale/sale.component';
+import { AuthInterceptor } from './interceptors/auth';
 
 
 
@@ -42,13 +44,20 @@ import { SaleComponent } from './sale/sale.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
+    
     //NgToastModule,
     BrowserAnimationsModule,
   
     ToastrModule.forRoot()
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
